@@ -19,6 +19,8 @@ You can probe locally with the following request.
       "name": "Ariadne",
       "balance": 450000
     }
+    METHOD
+    post
   ## Create an order
   Create an order for the user. Therefore, it first evaluates if the total of the order is less than the user's balance, if it is true, it goes on to discount the total of the order to the balance. 
 
@@ -31,6 +33,8 @@ You can probe locally with the following request.
       "banano":0,
       "fresa": 0
     }
+    METHOD
+    post
 
   ## Increase the user balance
   Increases the current balance of the user, the amount that is sent
@@ -43,3 +47,20 @@ You can probe locally with the following request.
     "balance": 50000,
     "name": "dani"
     }
+
+    METHOD
+    patch
+
+  ## Tranfer between users
+  Transfer between users 
+
+    URL
+    http://localhost:3000/users/{user_id} --> id the user who's goint to send the balance 
+
+    Body --> is the amount od balance that the user wants to tranfer and the id of the user who's receive the amount
+    {
+    "balance": 500,
+    "userTranferID": 2
+    }
+    METHOD
+    patch

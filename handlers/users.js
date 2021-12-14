@@ -37,11 +37,19 @@ module.exports.users = async (event) => {
         if (event.body && event.pathParameters.user_id) { 
 
           let updatedUser = null
+          let dataItems = null
+          let balance = ['balance']
+          let itemsTransferUser = ['balance', 'userTranferID']
 
           dataItems = Object.keys(JSON.parse(event.body))
-          modelItems = ['balance']
 
-          if(modelItems.every(r => dataItems.includes(r))){
+
+          if(itemsTransferUser.every(r => dataItems.includes(r))){
+            updatedUser = await UserController.transferBetweenUser(JSON.parse(event.pathParameters.user_id),  JSON.parse(event.body));
+            responseLambda.statusCode = updatedUser.statusCode
+            responseLambda.body= JSON.stringify(updatedUser.body)
+
+          }else if(balance.every(r => dataItems.includes(r))){
             updatedUser = await UserController.updatedBalanceUser(JSON.parse(event.pathParameters.user_id),  JSON.parse(event.body));
             responseLambda.statusCode = updatedUser.statusCode
             responseLambda.body= JSON.stringify(updatedUser.body)
@@ -75,28 +83,5 @@ module.exports.users = async (event) => {
   }
 };
 
-
-// module.exports.users = async (event) => {
-
-//   console.log(event)
-
-
-//   // const user = await prisma.user.create({
-//   //   data: {
-//   //     email: 'ariadne@edru.io',
-//   //     name: 'Ariadne',
-//   //     balance: 4500
-//   //   },
-//   // })
-
-
-//   // return {
-//   //   statusCode: 200,
-//   //   body: JSON.stringify(event   ),
-//   // };
-
-
-
-// };
 
 

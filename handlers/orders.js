@@ -47,6 +47,8 @@ module.exports.orders = async (event) => {
         }
       break;
 
+
+
       }
 
   } catch (error) {
@@ -61,27 +63,5 @@ module.exports.orders = async (event) => {
 };
 
 
-// module.exports.users = async (event) => {
-
-//   console.log(event)
-
-
-//   // const user = await prisma.user.create({
-//   //   data: {
-//   //     email: 'ariadne@edru.io',
-//   //     name: 'Ariadne',
-//   //     balance: 4500
-//   //   },
-//   // })
-
-
-//   // return {
-//   //   statusCode: 200,
-//   //   body: JSON.stringify(event   ),
-//   // };
-
-
-
-// };
 
 
