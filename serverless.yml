@@ -1,0 +1,38 @@
+
+service: munchiApp
+frameworkVersion: '2 || 3'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+
+
+functions:
+  users:
+    handler: ./handlers/users.users
+    events:
+      - httpApi:
+          path: users
+          method: post
+      - httpApi:
+          path: users
+          method: get
+      - httpApi:
+          path: users/{user_id}
+          method: get
+      - httpApi:
+          path: users/{user_id}
+          method: patch
+  orders:
+    handler: ./handlers/orders.orders
+    events:
+      - httpApi:
+          path: orders/{user_id}
+          method: post
+      - httpApi:
+          path: orders/{user_id}
+          method: get
